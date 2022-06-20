@@ -49,22 +49,7 @@ def compare(dir1, dir2, dir3):
         compare(new_dir1, new_dir2, new_dir3)
 
 
-def del_excess(dev, out):
-
-    dirs_cmp2 = filecmp.dircmp(dev, out)
-    print(dirs_cmp2.right_only)
-
-    for x in dirs_cmp2.right_only:
-        os.remove(os.path.join(out, x))
-
-    for z in dirs_cmp2.common_dirs:
-        new_dev = os.path.join(dev, z)
-        new_out = os.path.join(out, z)
-        del_excess(new_dev, new_out)
-
-
 if not os.path.isdir(dir3):
     os.mkdir(dir3)
 
 compare(dir1, dir2, dir3)
-# del_excess(dir1, dir3)
